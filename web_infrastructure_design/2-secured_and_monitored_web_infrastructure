@@ -1,0 +1,19 @@
+1. Explanation of additional elements :
+
+Firewall: Protects the infrastructure by filtering unauthorized traffic, preventing external threats from reaching the servers.
+
+HTTPS: Secures data exchanges by encrypting traffic between users and servers, preventing interception and attacks.
+
+Monitoring: Monitors the health of servers and services, detecting problems and helping to prevent breakdowns. It can track performance.
+
+Data collection by monitoring tool: Agents installed on servers regularly send metrics (such as CPU load, RAM or requests per second) to a central monitoring server for analysis.
+
+2. How to monitor web server QPS (queries per second): To monitor QPS, you need to configure a monitoring tool that captures logs and analyzes the number of HTTP requests received by the server. You configure the agent to monitor web server logs or use specific HTTP metrics exposed by the server.
+
+3. Problems with this infrastructure:
+
+SSL terminated at Load Balancer: This means that traffic between the Load Balancer and downstream servers is not encrypted. If an attack occurs inside the network, it could compromise the data. For added security, it's best to encrypt traffic to the backend servers.
+
+A single MySQL server accepting writes: If this server goes down, database writes can no longer be performed, interrupting services that require modifications. Having several write-capable servers solves this problem.
+
+Servers with all the same components (database, web server, application server): This configuration can lead to performance and management problems. If one component (such as the database) encounters a problem, it can affect the whole server. Separating components into distinct roles improves scalability and makes it easier to manage failures or scalability.
