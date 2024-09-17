@@ -1,0 +1,14 @@
+1. Add additional elements:
+Load Balancer: Distributes traffic between two servers to prevent one from being overloaded, thus improving availability.
+Two servers: Each server handles part of the traffic to better absorb loads and guarantee continuity of service in the event of failure of one of them.
+Database (Primary-Replica): The primary node handles writes, while replicas handle reads, increasing performance and ensuring redundancy.
+2. Load Balancer distribution algorithm: The Round Robin or Least Connections is often used to balance load between servers.
+3. Active-Active vs Active-Passive :
+Active-Active: Both servers are active at the same time, distributing traffic continuously.
+Active-Passive: Only one server is active, and the other is on standby, ready to take over in case of failure.
+4. How a Primary-Replica (Master-Slave) cluster works: The Primary handles all data writes, and this data is automatically replicated to the Replica. The Replica handle only read requests. In the event of a Primary failure, a Replica can be promoted to become the new Primary, guaranteeing continuity of service without loss of data.
+5. Difference between Primary and Replica: The Primary processes both reads and writes, while the Replica processes only reads, lightening the load on the Primary.
+6. Problems with this infrastructure:
+SPOF: If the Load Balancer or Primary fails, the entire system may be unavailable.
+Security: The absence of firewalls and HTTPS exposes the infrastructure to attacks.
+No monitoring: Impossible to detect failures or anomalies without active monitoring.
