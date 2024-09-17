@@ -1,0 +1,20 @@
+ Adding additional elements :
+
+ Additional server: A new server is added to distribute critical components (web server, application server, database) in order to optimize performance and facilitate management of failures or scalability. Separating these functions on separate servers reduces the load per server and limits the risk of conflicts between components.
+
+
+ Load Balancer (HAProxy) clustered with the other: A second Load Balancer is added in cluster mode to guarantee high availability. If one Load Balancer fails, the other automatically takes over, avoiding any service interruption. HAProxy is chosen for its performance, stability and flexibility in managing traffic distribution between servers.
+
+Separation of components (web server, application, database): By dividing each role on separate servers:
+Web server: Handles only HTTP requests and distributes the load among the application servers.
+Application server: Executes business logic and dynamic requests, without being slowed down by web or database management.
+Database server: Handles data storage and retrieval operations exclusively, without being 
+disturbed by other processes.
+
+Explanation of additional elements:
+
+Additional server: Allows various functions, such as databases, to be distributed on a dedicated server to lighten the load on application and web servers.
+
+Clustered HAProxy: In cluster mode, the two Load Balancers guarantee fault tolerance. If one fails, the second ensures service continuity, avoiding any single point of failure (SPOF).
+
+Component separation: This improves performance and security. Each server can be optimized for its specific role (for example, a database server with lots of memory and fast storage, while the application server could be optimized for computation). In the event of a component overload or failure, only the associated services are affected, not the entire infrastructure.
